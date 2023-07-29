@@ -22,6 +22,7 @@ public:
 
 private:
     static std::vector<std::vector<float>> sigmoid(std::vector<std::vector<float>>);
+    static std::vector<std::vector<float>> sigmoid_prime(std::vector<std::vector<float>>);
 };
 
 

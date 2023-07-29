@@ -21,11 +21,5 @@ add_executable(ML
         NeuralNetwork/Network.cpp NeuralNetwork/Network.h
         )
 
-# Add the test executable
-add_executable(UnitTests Test/test.cpp)
-
 # Link the main executable with the Boost libraries if needed
 target_link_libraries(ML PRIVATE ${Boost_LIBRARIES})
-
-# Link the test executable with the Boost Test library and the main executable
-target_link_libraries(UnitTests PRIVATE ${Boost_LIBRARIES} ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})

@@ -11,7 +11,23 @@ std::vector<std::vector<float>> DenseLayer::forwardPropagation(std::vector<std::
 }
 
 std::vector<std::vector<float>> DenseLayer::backPropagation(std::vector<std::vector<float>> error, float learning_rate) {
-    return {};
+    auto input_error = matrix::dotProduct(error, matrix::transposeMatrix(weights));
+    auto weights_error = matrix::dotProduct(matrix::transposeMatrix(input), error);
+
+    // Update weights and bias
+    for(int i = 0; i < weights.size(); i++) {
+        for(int j = 0; j < weights[i].size(); j++) {
+            weights[i][j] -= learning_rate * weights_error[i][j];
+        }
+    }
+
+    for(int i = 0; i < bias.size(); i++) {
+        for(int j = 0; j < bias[i].size(); j++) {
+            bias[i][j] -= learning_rate * error[i][j];
+        }
+    }
+
+    return input_error;
 }
 
 DenseLayer::DenseLayer() = default;
